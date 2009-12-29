@@ -1,7 +1,7 @@
-name:  
+name: HistoryManager
 author:  arieh
-current:  
-category:  
-tags:  []
-docs:  
-demo:  
+current:  0.1
+category: Utilities 
+tags:  [AJAX,Interface,Observer]
+#docs:  
+#demo:  

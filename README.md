@@ -51,6 +51,7 @@ Options
 Events
 -------
 The class's events are not pre-defined, but concice as such:
+
   * '-added' : will fire when a new value is added. will send the new value to the function
   * '-changed' : will fire when a value is modified. will send the new value to the function
   * '-removed' : will fire when a value is removed. will send the last value to the function

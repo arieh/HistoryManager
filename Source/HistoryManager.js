@@ -10,10 +10,6 @@ authors:
 requires:
 - core: 1.2.4/Class
 - core: 1.2.4/Class.Extras
-- core: 1.2.4/Element
-- core: 1.2.4/Element.Event
-- core: 1.2.4/Element.Style
-- core: 1.2.4/Selectors
 
 provides: HistoryManager
 

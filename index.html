@@ -1,0 +1,45 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd>
+
+<html>
+<head>
+	<title>HistoryManager Demo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
+
+	<style type='text/css'>
+		
+	</style>
+</head>
+<body>
+<ul>
+	<li><a href='javascript:;' id='add'>Add/Change</a></li>
+	<li><a href='javascript:;' id='remove'>Remove</a></li>
+	<li><a href='javascript:;' id='stop'>Stop</a></li>
+	<li><a href='javascript:;' id='start'>Start</a></li>
+	<div id='result'></div>
+</ul>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js'></script>
+<script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HistoryManager.js'></script>
+<script type='text/javascript'>
+	var i=0,dp = new HistoryManager;
+	$('add').addEvent('click',function(){
+		dp.set('value',i++);
+	});
+	$('remove').addEvent('click',function(){
+		dp.remove('value');
+	});
+	$('stop').addEvent('click',function(){
+		dp.stop();
+	});
+	$('start').addEvent('click',function(){
+		dp.start();
+	});
+	dp.addEvent('value-added',function(value){$('result').innerHTML = 'added:'+value;});
+	dp.addEvent('value-changed',function(value){$('result').innerHTML = 'changed:'+value;});
+	dp.addEvent('value-removed',function(value){$('result').innerHTML = 'removed:'+value});
+
+	dp.start();
+</script>
+</body>
+</html>

@@ -3,5 +3,4 @@ author:  arieh
 current:  0.2
 category: Utilities 
 tags:  [AJAX,Interface,Observer]
-#docs:  
-#demo:  
+demo: http://arieh.github.com/HistoryManager/

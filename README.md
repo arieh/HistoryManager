@@ -7,6 +7,7 @@ This library consists of 2 Classes:
 
 I've patched quite a lot of code together to implement the HashListener (and probably will find myself patching some more later on).
 The Main code sources i used are:
+
   * Dave De Vos supplied me with a very good Moo implemenetation that he worked out from several other sources (such as YUI and LittleHistoryManager)
   * Digitarald's HistoryManager, which was originaly made for Moo 1.1. His IE method is by now the best I've seen used and is the one used for this class.
 

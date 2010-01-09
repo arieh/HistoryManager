@@ -23,7 +23,7 @@
 	var i=0, HM = new HistoryManager();
 	
 	$('add').addEvent('click',function(){
-		HM.set('aaa',i);
+		HM.set('aaa',i++);
 	});
 	
 	$('remove').addEvent('click',function(){

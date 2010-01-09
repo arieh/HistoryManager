@@ -16,10 +16,10 @@ Tested With: FF3.5, Safari 4.0.4, Chrome 3 and IE6-8 (though, since I'm working 
 
 
 How To Use
-===========
+-------------
 
-HashListener
-------------
+*HashListener*
+
 This class supplies a very simple interface for modifying the browser hash in a way that supports a back/farward behavior to all browsers (theoretically).
 How To Use:
 
@@ -38,8 +38,8 @@ How To Use:
 	
 note that updateHash changes the hash completely.
 
-HistoryManager
----------------
+*HistoryManager*
+
 This class extends the HashListener to supply a richer interface that allows multiple states to be kept together.
 It supplies a Domain Observer. This means that you can register your classes through it, and let it transact data between different classes and layers of the site. 
 It's usage is quite simple:

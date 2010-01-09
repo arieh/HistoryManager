@@ -1,15 +1,11 @@
 <!DOCTYPE html 
      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-     http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd>
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html>
 <head>
-	<title>HistoryManager Demo</title>
+	<title>History-Manager Demo</title>
 	<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
-
-	<style type='text/css'>
-		
-	</style>
 </head>
 <body>
 <ul>
@@ -17,30 +13,37 @@
 	<li><a href='javascript:;' id='remove'>Remove</a></li>
 	<li><a href='javascript:;' id='stop'>Stop</a></li>
 	<li><a href='javascript:;' id='start'>Start</a></li>
-	<div id='result'></div>
+	
 </ul>
-
+<div id='result'></div>
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js'></script>
+<script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HashListener.js'></script>
 <script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HistoryManager.js'></script>
 <script type='text/javascript'>
-	var i=0,dp = new HistoryManager;
+	var i=0, HM = new HistoryManager();
+	
 	$('add').addEvent('click',function(){
-		dp.set('value',i++);
+		HM.set('aaa',i);
 	});
+	
 	$('remove').addEvent('click',function(){
-		dp.remove('value');
-	});
-	$('stop').addEvent('click',function(){
-		dp.stop();
-	});
-	$('start').addEvent('click',function(){
-		dp.start();
-	});
-	dp.addEvent('value-added',function(value){$('result').innerHTML = 'added:'+value;});
-	dp.addEvent('value-changed',function(value){$('result').innerHTML = 'changed:'+value;});
-	dp.addEvent('value-removed',function(value){$('result').innerHTML = 'removed:'+value});
-
-	dp.start();
+		HM.remove('aaa');
+	})
+	
+	HM.addEvent('aaa-added',function(value){
+		$('result').set('html',value+'ad');
+		if (console) console.log(value,'added');
+	})
+	HM.addEvent('aaa-changed',function(value){
+		$('result').set('html',value+'ch');
+		if (console) console.log(value,'changed');
+	})
+	HM.addEvent('aaa-removed',function(value){
+		$('result').set('html',value+'rm');
+		if (console) console.log(value,'removed');
+	})
+	
+	HM.start();
 </script>
 </body>
 </html>

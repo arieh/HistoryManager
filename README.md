@@ -18,6 +18,7 @@ Tested With: FF3.5, Safari 4.0.4, Chrome 3 and IE6-8 (though, since I'm working 
 
 How To Use
 -------------
+For both classes, you must supply a blank.html (comes with the package), and point the classes to it (for IE<8 support). by default the classes assume it's location at the root dir.
 
 *HashListener*
 

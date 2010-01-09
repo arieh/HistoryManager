@@ -14,6 +14,10 @@ The class started as a prooof-of-concept for a Domain Observer. Thus, this class
   
 Tested With: FF3.5, Safari 4.0.4, Chrome 3 and IE6-8 (though, since I'm working with multiple versions on the same machine I'm pretty sure this should b further tested). Opera should also work but not tested yet.
 
+
+How To Use
+===========
+
 HashListener
 ------------
 This class supplies a very simple interface for modifying the browser hash in a way that supports a back/farward behavior to all browsers (theoretically).

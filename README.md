@@ -20,7 +20,7 @@ How To Use
 -------------
 For both classes, you must supply a blank.html (comes with the package), and point the classes to it (for IE<8 support). by default the classes assume it's location at the root dir.
 
-*HashListener*
+## HashListener ##
 
 This class supplies a very simple interface for modifying the browser hash in a way that supports a back/farward behavior to all browsers (theoretically).
 How To Use:
@@ -40,7 +40,7 @@ How To Use:
 	
 note that updateHash changes the hash completely.
 
-*HistoryManager*
+## HistoryManager ##
 
 This class extends the HashListener to supply a richer interface that allows multiple states to be kept together.
 It supplies a Domain Observer. This means that you can register your classes through it, and let it transact data between different classes and layers of the site. 
@@ -79,11 +79,12 @@ Both classes use the same options:
 
 Events
 -------
-*HashListener*:
+## HashListener ##
 
   * 'hash-changed' : will fire whenever the hash was changed (whether by the back-button or the class's methods). will send the new hash as a paramater to the function
 
-*HistoryManager*
+## HistoryManager ##
+
 The class's events are dynamic, and change by the value that the class monitors. They concise thus:
 
   * ' * -added' : will fire when a new value is added. will send the new value to the function

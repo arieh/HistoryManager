@@ -74,7 +74,7 @@ Options
 ---------
 Both classes use the same options:
 
-  * iframeSrc : an alternative source for an iframe file. *note that the file must be valid*
+  * blank_page : an alternative source for an iframe file. *note that the file must be valid*
   * start : whether to start service on creation (default:false). this is not recomended, since you want the events to be registered before starting the class up.
 
 Events

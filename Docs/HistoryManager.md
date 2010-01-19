@@ -26,7 +26,6 @@ We can then use the setters (set/remove) to change the state of someValue, calli
 Usage Example
 --------------
 
-
 	#JS
 	var HM = new HistoryManager();
 	

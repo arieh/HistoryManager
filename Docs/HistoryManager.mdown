@@ -2,7 +2,7 @@ HistoryManager
 ===============
 The class acts as a paramater stack, to monitor and modify the state of an aplication. Whenever a paramater withing the stack changes state, the class notifies it's followers of the change.
 
-HistoryManager Method: constructor {#HistoryManager:constructor}
+HistoryManager Method: constructor
 ----------------------------------------------------------
 ### Syntax:
 
@@ -18,7 +18,7 @@ HistoryManager Method: constructor {#HistoryManager:constructor}
 * start - (`bool`: defaulst to `false`) whether to start the listener on construction
 
 
-HistoryManager Method: Set {#HistoryManager:set}
+HistoryManager Method: Set
 --------------------------------------------------
 <big>Used to set a state for the domain. Will set a key's value in the state.</big>
 
@@ -31,7 +31,7 @@ HistoryManager Method: Set {#HistoryManager:set}
 1. key - (`string`) A key identifier
 2. elements - (`mixed`) whatever value you want to set to that key (must be JSON encodable)
 
-HistoryManager Method: Remove {#HistoryManager:remove}
+HistoryManager Method: Remove
 -------------------------------------------------------
 <big>Used to remove a state from the domain. Will remove `key` and it's value from the state.</big>
 
@@ -43,7 +43,7 @@ HistoryManager Method: Remove {#HistoryManager:remove}
 
 1. key - (`string`) A key identifier
 
-HistoryManager Method: Start {#HistoryManager:start}
+HistoryManager Method: Start
 -------------------------------------------------------
 <big>Will start the listener. This will enable the various events attached to the class.</big>
 
@@ -51,7 +51,7 @@ HistoryManager Method: Start {#HistoryManager:start}
 
 	HM.start();
 
-HistoryManager Method: Stop {#HistoryManager:stop}
+HistoryManager Method: Stop 
 -------------------------------------------------------
 <big>Will stop the event listener. When down, no events will be fired</big>
 

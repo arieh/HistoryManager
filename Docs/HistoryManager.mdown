@@ -1,9 +1,9 @@
-Description
---------------
-This class is meant to function as a domain observer. It uses the browser-hash (via HashListener) to monitor and save the domain-state (enabeling bookmarks and back/farward button functionality). 
-The class acts as a paramater stack, to monitor and modify the state of an aplication. Whenever a paramater withing the stack changes state, the class notifies it's followers of the change.
+Class: HistoryManager {#HistoryManager}
+==========================================
+<big>This class is meant to function as a domain observer. It uses the browser-hash (via HashListener) to monitor and save the domain-state (enabeling bookmarks and back/farward button functionality). 
+The class acts as a paramater stack, to monitor and modify the state of an aplication. Whenever a paramater withing the stack changes state, the class notifies it's followers of the change.</big>
 
-HistoryManager Method: constructor
+HistoryManager Method: constructor {#HistoryManager:constructor}
 ----------------------------------
 ### Syntax:
 
@@ -19,7 +19,7 @@ HistoryManager Method: constructor
 * start - (`bool`: defaulst to `false`) whether to start the listener on construction
 
 
-HistoryManager Method: Set
+HistoryManager Method: Set {#HistoryManager:set}
 ---------------------------
 <big>Used to set a state for the domain. Will set a key's value in the state.</big>
 
@@ -32,7 +32,7 @@ HistoryManager Method: Set
 1. key - (`string`) A key identifier
 2. elements - (`mixed`) whatever value you want to set to that key (must be JSON encodable)
 
-HistoryManager Method: Remove
+HistoryManager Method: Remove {#HistoryManager:remove}
 -----------------------------
 <big>Used to remove a state from the domain. Will remove `key` and it's value from the state.</big>
 
@@ -44,7 +44,7 @@ HistoryManager Method: Remove
 
 1. key - (`string`) A key identifier
 
-HistoryManager Method: Start
+HistoryManager Method: Start {#HistoryManager:start}
 ----------------------------
 <big>Will start the listener. This will enable the various events attached to the class.</big>
 
@@ -52,7 +52,7 @@ HistoryManager Method: Start
 
 	HM.start();
 
-HistoryManager Method: Stop 
+HistoryManager Method: Stop {#HistoryManager:stop}
 ---------------------------
 <big>Will stop the event listener. When down, no events will be fired</big>
 

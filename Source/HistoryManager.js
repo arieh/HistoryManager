@@ -6,11 +6,9 @@ license: MIT-style
 
 authors:
 - Arieh Glazer
-- Dave De Vos
-- Digitarald
 
 requires:
-- HistoryManager : 0.4/HashListner
+- /HashListner
 
 provides: HistoryManager
 
@@ -31,7 +29,7 @@ var HistoryManager = new Class({
 		
 		this.state.each(function(value,key){
 			var nvalue;
-			
+
 			if (hash.has(key)){
 				nvalue = hash.get(key);
 				self.state.set(key,nvalue);
@@ -47,18 +45,18 @@ var HistoryManager = new Class({
 		
 		hash.each(function(value,key){
 			self.state.set(key,value);
-			self.fireEvent(key+'-added',value)
+			self.fireEvent(key+'-added',value);
 		});
 	},
 	set : function(key,value){
-		var newState = new Hash($merge(this.state));
+		var newState = new Hash(this.state);
 		
 		newState.set(key,value);
 
 		this.updateHash(newState.toJSON());
 	},
 	remove : function(key){
-		var newState = new Hash($merge(this.state));
+		var newState = new Hash(this.state);
 		
 		newState.erase(key);
 		

@@ -1,8 +1,8 @@
-Description
-------------
+Class: HashListener {#HashListener}
+==========================================
 A Class that provides a cross-browser history-management functionaility, using the browser hash to store the application's state
 
-HashListener Method: constructor
+HashListener Method: constructor {#HashListener:constructor}
 ---------------------------------
 ### Syntax:
 
@@ -17,7 +17,7 @@ HashListener Method: constructor
 * blank_page - (`string`: defaults to `blank.html`) an alternative path to the blank.html file. 
 * start - (`bool`: defaulst to `false`) whether to start the listener on construction
 
-HashListener Method: updateHash
+HashListener Method: updateHash {#HashListener:updateHash}
 --------------------------------
 ### Syntax:
 

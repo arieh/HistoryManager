@@ -1,3 +1,7 @@
+Description
+------------
+A Class that provides a cross-browser history-management functionaility, using the browser hash to store the application's state
+
 HashListener Method: constructor
 ---------------------------------
 ### Syntax:

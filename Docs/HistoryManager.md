@@ -26,7 +26,26 @@ We can then use the setters (set/remove) to change the state of someValue, calli
 Usage Example
 --------------
 
-	#JS
 	var HM = new HistoryManager();
+	
+	HM.addEvent( 'MyVar-added'   , function(myvar){console.log('added '+myvar)} );
+	HM.addEvent( 'MyVar-changed' , function(myvar){console.log('changed '+myvar)} );
+	HM.addEvent( 'MyVar-removed' , function(myvar){console.log('removed '+myvar)} );
+	
+	// it is strongly recomended to set the events before starting the object
+	HM.start();
+	
+	HM.set('MyVar',1); //will log 'added 1'
+	HM.set('MyVar',2); //will log 'changed 2'
+	HM.set('MyVar',3); //will log 'changed 3'
+	HM.remove('MyVar');//will log 'removed 3'
+	
+	/* 
+	 * pressing back button will do the following:
+	 * 1. added 3
+	 * 2. changed 2
+	 * 3. changed 1
+	 * 4. removed 1
+	 */
 	
 	

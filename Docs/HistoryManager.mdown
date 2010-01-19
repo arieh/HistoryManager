@@ -1,0 +1,60 @@
+HistoryManager
+===============
+The class acts as a paramater stack, to monitor and modify the state of an aplication. Whenever a paramater withing the stack changes state, the class notifies it's followers of the change.
+
+HistoryManager Method: constructor {#HistoryManager:constructor}
+----------------------------------------------------------
+### Syntax:
+
+	var HM = new HistoryManager(options);
+
+### Arguments:
+
+1. options - (`object`: optional) See below:
+
+### Options:
+
+* blank_page - (`string`: defaults to `blank.html`) an alternative path to the blank.html file. 
+* start - (`bool`: defaulst to `false`) whether to start the listener on construction
+
+
+HistoryManager Method: Set {#HistoryManager:set}
+--------------------------------------------------
+<big>Used to set a state for the domain. Will set a key's value in the state.</big>
+
+### Syntax:
+
+	HM.set('my-key','some value');
+
+### Arguments:
+
+1. key - (`string`) A key identifier
+2. elements - (`mixed`) whatever value you want to set to that key (must be JSON encodable)
+
+HistoryManager Method: Remove {#HistoryManager:remove}
+-------------------------------------------------------
+<big>Used to remove a state from the domain. Will remove `key` and it's value from the state.</big>
+
+### Syntax:
+
+	HM.remove('my-key');
+
+### Arguments:
+
+1. key - (`string`) A key identifier
+
+HistoryManager Method: Start {#HistoryManager:start}
+-------------------------------------------------------
+<big>Will start the listener. This will enable the various events attached to the class.</big>
+
+### Syntax:
+
+	HM.start();
+
+HistoryManager Method: Stop {#HistoryManager:stop}
+-------------------------------------------------------
+<big>Will stop the event listener. When down, no events will be fired</big>
+
+### Syntax:
+
+	HM.stop();

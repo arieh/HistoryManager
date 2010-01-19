@@ -3,7 +3,7 @@ HistoryManager
 The class acts as a paramater stack, to monitor and modify the state of an aplication. Whenever a paramater withing the stack changes state, the class notifies it's followers of the change.
 
 HistoryManager Method: constructor
-----------------------------------------------------------
+----------------------------------
 ### Syntax:
 
 	var HM = new HistoryManager(options);
@@ -19,12 +19,12 @@ HistoryManager Method: constructor
 
 
 HistoryManager Method: Set
---------------------------------------------------
+---------------------------
 <big>Used to set a state for the domain. Will set a key's value in the state.</big>
 
 ### Syntax:
 
-	HM.set('my-key','some value');
+	HM.set(key,value);
 
 ### Arguments:
 
@@ -32,7 +32,7 @@ HistoryManager Method: Set
 2. elements - (`mixed`) whatever value you want to set to that key (must be JSON encodable)
 
 HistoryManager Method: Remove
--------------------------------------------------------
+-----------------------------
 <big>Used to remove a state from the domain. Will remove `key` and it's value from the state.</big>
 
 ### Syntax:
@@ -44,7 +44,7 @@ HistoryManager Method: Remove
 1. key - (`string`) A key identifier
 
 HistoryManager Method: Start
--------------------------------------------------------
+----------------------------
 <big>Will start the listener. This will enable the various events attached to the class.</big>
 
 ### Syntax:
@@ -52,9 +52,17 @@ HistoryManager Method: Start
 	HM.start();
 
 HistoryManager Method: Stop 
--------------------------------------------------------
+---------------------------
 <big>Will stop the event listener. When down, no events will be fired</big>
 
 ### Syntax:
 
 	HM.stop();
+	
+Events
+-------
+<big>The class is event-based, but doesn't have prefixed events. The events change according to the key being observed. It is done thus (where '#' is the name of the key):</big>
+
+  * '#-added' : will be fired when an unset key is given a value. will pass the new value as paramater
+  * '#-changed' : will be fired when a key's value has been changed. will pass the new value as paramater
+  * '#-removed' : will be fired when a key has been removed from the state. will pas the key's last value as paramater

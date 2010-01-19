@@ -4,7 +4,7 @@ A Class that provides a cross-browser history-management functionaility, using t
 
 HashListener Method: constructor {#HashListener:constructor}
 ---------------------------------
-### Syntax:
+### JavaScript:
 
 	var HL = new HashListener(options);
 
@@ -19,7 +19,7 @@ HashListener Method: constructor {#HashListener:constructor}
 
 HashListener Method: updateHash {#HashListener:updateHash}
 --------------------------------
-### Syntax:
+### JavaScript:
 
 	HL.updateHash(value);
 	

@@ -5,7 +5,7 @@ The class acts as a paramater stack, to monitor and modify the state of an aplic
 
 HistoryManager Method: constructor {#HistoryManager:constructor}
 ----------------------------------
-### JavaScript:
+### Example:
 
 	var HM = new HistoryManager(options);
 
@@ -23,7 +23,7 @@ HistoryManager Method: Set {#HistoryManager:set}
 ---------------------------
 <big>Used to set a state for the domain. Will set a key's value in the state.</big>
 
-### JavaScript:
+### Example:
 
 	HM.set(key,value);
 
@@ -36,7 +36,7 @@ HistoryManager Method: Remove {#HistoryManager:remove}
 -----------------------------
 <big>Used to remove a state from the domain. Will remove `key` and it's value from the state.</big>
 
-### JavaScript:
+### Example:
 
 	HM.remove('my-key');
 
@@ -48,7 +48,7 @@ HistoryManager Method: Start {#HistoryManager:start}
 ----------------------------
 <big>Will start the listener. This will enable the various events attached to the class.</big>
 
-### JavaScript:
+### Example:
 
 	HM.start();
 
@@ -69,9 +69,7 @@ Events
   * '#-removed' : will be fired when a key has been removed from the state. will pas the key's last value as paramater
   
 Example
---------------
-
-### JavaScript:
+--------
 
 	var HM = new HistoryManager();
 	

@@ -10,9 +10,9 @@ authors:
 - Digitarald
 
 requires:
-- core: 1.2.4/Class
-- core: 1.2.4/Class.Extras
-- core: 1.2.4/Element
+- core/1.2.4: Class
+- core/1.2.4: Class.Extras
+- core/1.2.4: Element
 
 provides: HashListner
 

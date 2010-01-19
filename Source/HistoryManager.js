@@ -8,7 +8,7 @@ authors:
 - Arieh Glazer
 
 requires:
-- /HashListner
+- HashListner
 
 provides: HistoryManager
 
@@ -54,6 +54,8 @@ var HistoryManager = new Class({
 		newState.set(key,value);
 
 		this.updateHash(newState.toJSON());
+		
+		return this;
 	},
 	remove : function(key){
 		var newState = new Hash(this.state);
@@ -61,5 +63,7 @@ var HistoryManager = new Class({
 		newState.erase(key);
 		
 		this.updateHash(newState.toJSON());
+		
+		return this;
 	}
 });

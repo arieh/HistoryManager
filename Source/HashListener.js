@@ -14,7 +14,7 @@ requires:
 - core/1.2.4: Class.Extras
 - core/1.2.4: Element
 
-provides: [HashListner]
+provides: [HashListener]
 
 ...
 */

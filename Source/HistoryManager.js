@@ -8,7 +8,7 @@ authors:
 - Arieh Glazer
 
 requires:
-- HistoryManager/0.4.1: HashListner
+- HistoryManager/0.4.1: HashListener
 
 provides: [HistoryManager]
 

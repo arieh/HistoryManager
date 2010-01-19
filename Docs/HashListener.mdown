@@ -1,0 +1,28 @@
+HashListener Method: constructor
+---------------------------------
+### Syntax:
+
+	var HL = new HashListener(options);
+
+### Arguments:
+
+1. options - (`object`: optional) See below:
+
+### Options:
+
+* blank_page - (`string`: defaults to `blank.html`) an alternative path to the blank.html file. 
+* start - (`bool`: defaulst to `false`) whether to start the listener on construction
+
+HashListener Method: updateHash
+--------------------------------
+### Syntax:
+
+	HL.updateHash(value);
+	
+### Arguments:
+
+1. value - (`string`) a new value for the browser hash
+
+Events
+--------
+  * `hash-changed` - will be fired whenever the hash was changed - whether by method or by browser behaviour. will pass the new hash value as paramater 

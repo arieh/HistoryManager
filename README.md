@@ -15,6 +15,7 @@ The class started as a prooof-of-concept for a Domain Observer. Thus, this class
   
 Tested With: FF3.5, Safari 4.0.4, Chrome 3 and IE6-8 (though, since I'm working with multiple versions on the same machine I'm pretty sure this should b further tested). Opera should also work but not tested yet.
 
+![Screenshot](http://github.com/arieh/HistoryManager/raw/master/screenshot.png)
 
 How To Use
 -------------

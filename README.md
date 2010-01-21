@@ -13,7 +13,7 @@ The Main code sources i used are:
 
 The class started as a prooof-of-concept for a Domain Observer. Thus, this class still needs a lot of testing to be made.  
   
-Tested With: FF3.5, Safari 4.0.4, Chrome 3 and IE6-8 (though, since I'm working with multiple versions on the same machine I'm pretty sure this should b further tested). Opera should also work but not tested yet.
+Tested With: FF3.5, Safari 4.0.4, Chrome 3, Opera 10.10 and IE6-8 (though, since I'm working with multiple versions on the same machine I'm pretty sure this should b further tested). 
 
 ![Screenshot](http://github.com/arieh/HistoryManager/raw/master/screenshot.png)
 

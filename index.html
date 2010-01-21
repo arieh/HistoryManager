@@ -8,42 +8,60 @@
 	<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
 </head>
 <body>
+<h1>HistoryManager Demo Page</h1>
+<h2>How to use</h2>
+<p>Enter a value into the text-field. Use the <em>Modify Value</em> button to update the field's value.</p>
+<p>Use the <em>Remove</em> button to remove the current value.</p>
+<p>Use The <em>Stop</em> and <em>Start</em> buttons to stop/start the listener.</p>
+<input type='text' id='newValue' />
 <ul>
-	<li><a href='javascript:;' id='add'>Add/Change</a></li>
+	<li><a href='javascript:;' id='add'>Modify Value</a></li>
 	<li><a href='javascript:;' id='remove'>Remove</a></li>
 	<li><a href='javascript:;' id='stop'>Stop</a></li>
 	<li><a href='javascript:;' id='start'>Start</a></li>
-	
 </ul>
 <div id='result'></div>
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js'></script>
 <script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HashListener.js'></script>
 <script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HistoryManager.js'></script>
 <script type='text/javascript'>
-	var i=0, HM = new HistoryManager();
 	
-	$('add').addEvent('click',function(){
-		HM.set('aaa',i++);
+	var HM = new HistoryManager();
+	
+	window.addEvent('domready',function(){
+		$('add').addEvent('click',function(){
+			HM.set('state',$('newValue').value);
+		});
+		
+		$('remove').addEvent('click',function(){
+			HM.remove('state');
+		});
+		
+		$('stop').addEvent('click',function(){
+			HM.stop();
+			if (console) console.log('stoped');
+		});
+		
+		$('start').addEvent('click',function(){
+			HM.start();
+			if (console) console.log('start');
+		});
+		
+		HM.addEvent('state-added',function(value){
+			$('result').set('html','added: '+value);
+			if (console) console.log(value,'added');
+		})
+		HM.addEvent('state-changed',function(value){
+			$('result').set('html','changed: '+value);
+			if (console) console.log(value,'changed');
+		})
+		HM.addEvent('state-removed',function(value){
+			$('result').set('html','removed: '+value);
+			if (console) console.log(value,'removed');
+		})
+		
+		HM.start();
 	});
-	
-	$('remove').addEvent('click',function(){
-		HM.remove('aaa');
-	})
-	
-	HM.addEvent('aaa-added',function(value){
-		$('result').set('html',value+'ad');
-		if (console) console.log(value,'added');
-	})
-	HM.addEvent('aaa-changed',function(value){
-		$('result').set('html',value+'ch');
-		if (console) console.log(value,'changed');
-	})
-	HM.addEvent('aaa-removed',function(value){
-		$('result').set('html',value+'rm');
-		if (console) console.log(value,'removed');
-	})
-	
-	HM.start();
 </script>
 </body>
 </html>

@@ -32,9 +32,7 @@ var HashListener = new Class({
 	useIframe : (Browser.Engine.trident && (typeof(document.documentMode)=='undefined' || document.documentMode < 8)),
 	ignoreLocationChange : false,
 	initialize : function(options){
-		var s_f, 
-			self=this,
-			cached_storage;
+		var self=this;
 			
 		this.setOptions(options);
 		
@@ -56,7 +54,7 @@ var HashListener = new Class({
 						return;
 					}
 					self.fireEvent('hash-changed',hash);
-				}
+				};
         } else  {
 			if (this.useIframe){
 				this.initializeHistoryIframe();
@@ -70,7 +68,7 @@ var HashListener = new Class({
 		if (this.options.start) this.start();
 	},
 	initializeHistoryIframe : function(){
-		var hash = this.getHash(), self = this, doc;
+		var hash = this.getHash(), doc;
 		this.iframe = new IFrame({
 			src		: this.options.blank_page,
 			styles	: { 
@@ -82,8 +80,8 @@ var HashListener = new Class({
 				'visibility': 'hidden'
 			}
 		}).inject(document.body);
-    	
-		doc	= (this.iframe.contentDocument) ? this.iframe.contentDocumnet  : this.iframe.contentWindow.document;
+
+		doc	= (this.iframe.contentDocument) ? this.iframe.contentDocument  : this.iframe.contentWindow.document;
 		doc.open();
 		doc.write('<html><body id="state">' + hash + '</body></html>');
 		doc.close();
@@ -137,9 +135,12 @@ var HashListener = new Class({
 	},
 	updateHash : function (newHash){
 		if ($type(document.id(newHash))) {
-			this.debug_msg("Exception: History locations can not have the same value as _any_ IDs that might be in the document,"
-					 	+ " due to a bug in IE; please ask the developer to choose a history location that does not match any HTML"
-						+ " IDs in this document. The following ID is already taken and cannot be a location: " + newLocation);
+			this.debug_msg(
+				"Exception: History locations can not have the same value as _any_ IDs that might be in the document,"
+				+ " due to a bug in IE; please ask the developer to choose a history location that does not match any HTML"
+				+ " IDs in this document. The following ID is already taken and cannot be a location: "
+				+ newLocation
+			);
 		}
 		
 		this.ignoreLocationChange = true;

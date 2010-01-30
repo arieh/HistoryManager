@@ -68,7 +68,7 @@ HistoryManaget: Events {#HistoryManager:Events}
   * '#-changed' : will be fired when a key's value has been changed. will pass the new value as paramater
   * '#-removed' : will be fired when a key has been removed from the state. will pas the key's last value as paramater
   
-HistoryManager: Usage Example {#HistoryManager:Example}
+HistoryManager: Example {#HistoryManager:Example}
 --------
 
 	var HM = new HistoryManager();

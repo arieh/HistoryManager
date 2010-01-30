@@ -27,6 +27,6 @@ HashListener Method: updateHash {#HashListener:updateHash}
 
 1. value - (`string`) a new value for the browser hash
 
-Events
+HashListener: Events {#HashListener:Events}
 --------
   * `hash-changed` - will be fired whenever the hash was changed - whether by method or by browser behaviour. will pass the new hash value as paramater 

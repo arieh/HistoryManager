@@ -117,7 +117,7 @@ var HashListener = new Class({
 	},
 	getHash : function(){
 		var m;
-		if (Browser.Engine.geko){
+		if (Browser.Engine.gecko){
 			m = /#(.*)$/.exec(window.location.href);
 			return m && m[1] ? m[1] : '';
 		}else{

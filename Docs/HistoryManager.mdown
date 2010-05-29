@@ -1,7 +1,7 @@
 Class: HistoryManager {#HistoryManager}
 ==========================================
-<big>This class is meant to function as a domain observer. It uses the browser-hash (via HashListener) to monitor and save the domain-state (enabeling bookmarks and back/farward button functionality). 
-The class acts as a paramater stack, to monitor and modify the state of an aplication. Whenever a paramater withing the stack changes state, the class notifies it's followers of the change.</big>
+<big>This class is meant to function as a domain observer. It uses the browser-hash (via HashListener) to monitor and save the domain-state (enabling bookmarks and back/forward button functionality). 
+The class acts as a parameter stack, to monitor and modify the state of an application. Whenever a parameter withing the stack changes state, the class notifies its followers of the change.</big>
 
 HistoryManager Method: constructor {#HistoryManager:constructor}
 ----------------------------------
@@ -16,7 +16,7 @@ HistoryManager Method: constructor {#HistoryManager:constructor}
 ### Options:
 
 * blank_page - (`string`: defaults to `blank.html`) an alternative path to the blank.html file. 
-* start - (`bool`: defaulst to `false`) whether to start the listener on construction
+* start - (`bool`: defaults to `false`) whether to start the listener on construction
 
 
 HistoryManager Method: Set {#HistoryManager:set}
@@ -34,7 +34,7 @@ HistoryManager Method: Set {#HistoryManager:set}
 
 HistoryManager Method: Remove {#HistoryManager:remove}
 -----------------------------
-<big>Used to remove a state from the domain. Will remove `key` and it's value from the state.</big>
+<big>Used to remove a state from the domain. Will remove `key` and its value from the state.</big>
 
 ### Example:
 
@@ -64,9 +64,9 @@ HistoryManaget: Events {#HistoryManager:Events}
 -------
 <big>The class is event-based, but doesn't have prefixed events. The events change according to the key being observed. It is done thus (where '#' is the name of the key):</big>
 
-  * '#-added' : will be fired when an unset key is given a value. will pass the new value as paramater
-  * '#-changed' : will be fired when a key's value has been changed. will pass the new value as paramater
-  * '#-removed' : will be fired when a key has been removed from the state. will pas the key's last value as paramater
+  * '#-added' : will be fired when an unset key is given a value. will pass the new value as parameter
+  * '#-changed' : will be fired when a key's value has been changed. will pass the new value as parameter
+  * '#-removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter
   
 HistoryManager: Example {#HistoryManager:Example}
 --------
@@ -77,7 +77,7 @@ HistoryManager: Example {#HistoryManager:Example}
 	HM.addEvent( 'MyVar-changed' , function(myvar){console.log('changed '+myvar)} );
 	HM.addEvent( 'MyVar-removed' , function(myvar){console.log('removed '+myvar)} );
 	
-	// it is strongly recomended to set the events before starting the object
+	// it is strongly recommended to set the events before starting the object
 	HM.start();
 	
 	HM.set('MyVar',1); //will log 'added 1'

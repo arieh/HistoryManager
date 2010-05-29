@@ -1,6 +1,6 @@
 Class: HashListener {#HashListener}
 ==========================================
-A Class that provides a cross-browser history-management functionaility, using the browser hash to store the application's state
+A Class that provides a cross-browser history-management functionality, using the browser hash to store the application's state
 
 HashListener Method: constructor {#HashListener:constructor}
 ---------------------------------
@@ -15,7 +15,7 @@ HashListener Method: constructor {#HashListener:constructor}
 ### Options:
 
 * blank_page - (`string`: defaults to `blank.html`) an alternative path to the blank.html file. 
-* start - (`bool`: defaulst to `false`) whether to start the listener on construction
+* start - (`bool`: defaults to `false`) whether to start the listener on construction
 
 HashListener Method: updateHash {#HashListener:updateHash}
 --------------------------------
@@ -29,4 +29,4 @@ HashListener Method: updateHash {#HashListener:updateHash}
 
 HashListener: Events {#HashListener:Events}
 --------
-  * `hash-changed` - will be fired whenever the hash was changed - whether by method or by browser behaviour. will pass the new hash value as paramater 
+  * `hash-changed` - will be fired whenever the hash was changed - whether by method or by browser behaviour. will pass the new hash value as parameter 

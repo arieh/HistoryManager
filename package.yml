@@ -1,6 +1,6 @@
 name: HistoryManager
 author:  arieh
-current:  0.4.3
+current:  0.5
 category: Utilities 
 tags:  [AJAX,Interface,Observer]
 demo: http://arieh.github.com/HistoryManager/

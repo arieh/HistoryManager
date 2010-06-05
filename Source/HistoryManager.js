@@ -28,24 +28,32 @@ var HistoryManager = new Class({
 		hash = new Hash(JSON.decode(decodeURIComponent(hash)));
 		
 		this.state.each(function(value,key){
-			var nvalue;
+			var nvalue, comperable, h_type,v_type;
+			if (!hash.has(key)){
+				nvalue = self.state.get(key);
+				self.fireEvent(key+'-removed',[nvalue]);
+				self.state.erase(key);
+				hash.erase(key);
+				return;
+			}
+			h_type = $type(hash[key]);
+			v_type = $type(value);
+			comperable = [
+				(h_type=='string' || h_type=='number' || h_type =='boolean') ? hash[key] : JSON.encode(hash[key])
+				, (v_type=='string' || v_type=='number' || v_type =='boolean') ? value : JSON.encode(value)
+			];
 
-			if (hash.has(key)){
+			if (comperable[0] != comperable[1]){
 				nvalue = hash.get(key);
 				self.state.set(key,nvalue);
-				self.fireEvent(key+'-changed',nvalue);
-			}else{
-				nvalue = self.state.get(key);
-				self.fireEvent(key+'-removed',nvalue);
-				self.state.erase(key);
+				self.fireEvent(key+'-changed',[nvalue]);	
 			}
-			
-			hash.erase(key);
+			hash.erase(key);		
 		});
 		
 		hash.each(function(value,key){
 			self.state.set(key,value);
-			self.fireEvent(key+'-added',value);
+			self.fireEvent(key+'-added',[value]);
 		});
 	},
 	set : function(key,value){

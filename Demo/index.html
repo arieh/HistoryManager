@@ -10,6 +10,7 @@
 <body>
 <ul>
 	<li><a href='javascript:;' id='add'>Add/Change</a></li>
+	<li><a href="javascript:;" id='add-multi'>Add/Change</a></li>
 	<li><a href='javascript:;' id='remove'>Remove</a></li>
 	<li><a href='javascript:;' id='stop'>Stop</a></li>
 	<li><a href='javascript:;' id='start'>Start</a></li>
@@ -26,23 +27,41 @@
 		HM.set('aaa',i++);
 	});
 	
+	(function(){
+		var i=0,j=0;
+		$('add-multi').addEvent('click',function(){
+			HM.set('bbb',[i++,j++]);
+		});
+	})()
+	
 	$('remove').addEvent('click',function(){
 		HM.remove('aaa');
-	})
+	});
 	
 	HM.addEvent('aaa-added',function(value){
 		$('result').set('html',value+'ad');
 		if (console) console.log(value,'added');
-	})
+	});
 	HM.addEvent('aaa-changed',function(value){
 		$('result').set('html',value+'ch');
 		if (console) console.log(value,'changed');
-	})
+	});
 	HM.addEvent('aaa-removed',function(value){
 		$('result').set('html',value+'rm');
 		if (console) console.log(value,'removed');
-	})
-	
+	});
+	HM.addEvent('bbb-added',function(value){
+		$('result').set('html',value+'ad');
+		if (console) console.log(value,'added');
+	});
+	HM.addEvent('bbb-changed',function(value){
+		$('result').set('html',value+'ch');
+		if (console) console.log(value,'changed');
+	});
+	HM.addEvent('bbb-removed',function(value){
+		$('result').set('html',value+'rm');
+		if (console) console.log(value,'removed');
+	});
 	HM.start();
 </script>
 </body>

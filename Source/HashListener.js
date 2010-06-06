@@ -51,7 +51,7 @@ var HashListener = new Class({
 					if (hash == self.currentHash) {
 						return;
 					}
-					self.fireEvent('hash-changed',hash);
+					self.fireEvent('hashChanged',hash);
 				};
         } else  {
 			if (this.useIframe){
@@ -108,12 +108,12 @@ var HashListener = new Class({
 		
 		this.currentLocation = hash;
 		
-		this.fireEvent('hash-changed',hash);
+		this.fireEvent('hashChanged',hash);
 	},
 	setHash : function(newHash){
 		window.location.hash = this.currentLocation = newHash;
 		
-		this.fireEvent('hash-changed',newHash);
+		this.fireEvent('hashChanged',newHash);
 	},
 	getHash : function(){
 		var m;

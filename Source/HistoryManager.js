@@ -21,7 +21,7 @@ var HistoryManager = new Class({
 	fromHandle :false,
 	initialize : function(options){
 		this.parent(options);		
-		this.addEvent('hash-changed',this.updateState.bind(this));
+		this.addEvent('hashChanged',this.updateState.bind(this));
 	},
 	updateState : function (hash){
 		var self = this;

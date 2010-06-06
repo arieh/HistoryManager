@@ -11,9 +11,9 @@ The Main code sources i used are:
   * Dave De Vos supplied me with a very good Moo implemenetation that he worked out from several other sources (such as YUI and LittleHistoryManager)
   * Digitarald's HistoryManager, which was originaly made for Moo 1.1. His IE method is by now the best I've seen used and is the one used for this class.
 
-The class started as a prooof-of-concept for a Domain Observer. Thus, this class still needs a lot of testing to be made.  
+The class started as a prooof-of-concept for a Domain Observer. Thus, this class still needs a lot of testing to be made. 
   
-Tested With: FF3.5, Safari 4.0.4, Chrome 3, Opera 10.10 and IE6-8 (though, since I'm working with multiple versions on the same machine I'm pretty sure this should b further tested). 
+Tested With: FF3.5, Safari 4.0.4, Chrome 3, Opera 10.10 and IE6, IE7 emulation (throught the IE8 developer interface) and IE8. 
 
 ![Screenshot](http://github.com/arieh/HistoryManager/raw/master/screenshot.png)
 
@@ -45,12 +45,16 @@ note that updateHash changes the hash completely.
 
 This class extends the HashListener to supply a richer interface that allows multiple states to be kept together.
 It supplies a Domain Observer. This means that you can register your classes through it, and let it transact data between different classes and layers of the site. 
-It's usage is quite simple:
+It's usage can be a bit confusing but it actually tries to use JavaScript's event driven syntax:
 	
 	#JS
 	var HM = new HistoryManager();
 	
-	//Adding events to the observer. 
+	/*
+	 * Adding events to the observer. 
+	 * Should be done before observer is started, so that they will 
+	 * also be used when site is opened from history/bookmark.
+	 */
 	HM.addEvent('someValue-added',function(new_value){
 		console.log('someValue was added:'+new_value);
 	});
@@ -75,21 +79,18 @@ Options
 ---------
 Both classes use the same options:
 
-  * blank_page : an alternative source for an iframe file. *note that the file must be valid*
+  * blank_page : an alternative source for an iframe file. *note that the file must be valid for IE<8 support*
   * start : whether to start service on creation (default:false). this is not recomended, since you want the events to be registered before starting the class up.
 
 Events
 -------
 ### Hash Listener
 
-  * 'hash-changed' : will fire whenever the hash was changed (whether by the back-button or the class's methods). will send the new hash as a paramater to the function
+  * 'hashChanged' : will fire whenever the hash was changed (whether by the back-button or the class's methods). will send the new hash as a paramater to the function
 
 ### History Manager
+Along side the `hashChanged` event, the class supports 3 dynamic Events, which point to the 3 states a value might hold ('*' notes the value's name):
 
-The class's events are dynamic, and change by the value that the class monitors. They concise thus:
-
-  * ' * -added' : will fire when a new value is added. will send the new value to the function
-  * ' * -changed' : will fire when a value is modified. will send the new value to the function
-  * ' * -removed' : will fire when a value is removed. will send the last value to the function
-  
-where * is the name of the paramater that was modified.
+  * ' * -added' : Will fire when a new value is added. Will send the new value to the function.
+  * ' * -changed' : Will fire when a value is modified. Will send the new value to the function.
+  * ' * -removed' : Will fire when a value is removed. Will send the last value to the function.

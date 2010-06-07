@@ -30,7 +30,7 @@ var HashListener = new Class({
 	useIframe : (Browser.Engine.trident && (typeof(document.documentMode)=='undefined' || document.documentMode < 8)),
 	ignoreLocationChange : false,
 	initialize : function(options){
-		var self=this;
+		var $this=this;
 			
 		this.setOptions(options);
 		
@@ -46,13 +46,14 @@ var HashListener = new Class({
             (typeof(document.documentMode) == 'undefined' || document.documentMode > 7)
 		   ){
 				// The HTML5 way of handling DHTML history...
-				window.onhashchange = function () {
-					var hash = self.getHash();
-					if (hash == self.currentHash) {
+				window.addEvent('onhashchange' , function () {
+					var hash = $this.getHash();
+					if (hash == $this.currentHash) {
 						return;
 					}
-					self.fireEvent('hashChanged',hash);
-				};
+					$this.fireEvent('hashChanged',hash);
+					$this.fireEvent('hash-changed',hash);
+				});
         } else  {
 			if (this.useIframe){
 				this.initializeHistoryIframe();
@@ -60,7 +61,7 @@ var HashListener = new Class({
         } 
 		
 		window.addEvent('unload', function(event) {
-			self.firstLoad = null;
+			$this.firstLoad = null;
 		});
 		
 		if (this.options.start) this.start();
@@ -109,11 +110,13 @@ var HashListener = new Class({
 		this.currentLocation = hash;
 		
 		this.fireEvent('hashChanged',hash);
+		this.fireEvent('hash-changed',hash);
 	},
 	setHash : function(newHash){
 		window.location.hash = this.currentLocation = newHash;
-		
+		if (window.onhashchange) return;
 		this.fireEvent('hashChanged',newHash);
+		this.fireEvent('hash-changed',hash);
 	},
 	getHash : function(){
 		var m;

@@ -30,7 +30,7 @@ How To Use:
 	var HM = new HashListener();
 	
 	//add an event listener to the manager
-	HM.addEvent('hash-changed',function(new_hash){
+	HM.addEvent('hashChanged',function(new_hash){
 		console.log(new_hash);
 	});
 	

@@ -74,14 +74,17 @@ It's usage can be a bit confusing but it actually tries to use JavaScript's even
 	
 
 Note that this can be done with multiple value names, and can use any JSON-encodable data format as values (such as strings, arrays and objects).
-	
+
 Options
 ---------
 Both classes use the same options:
 
   * blank_page : an alternative source for an iframe file. *note that the file must be valid for IE<8 support*
   * start : whether to start service on creation (default:false). this is not recomended, since you want the events to be registered before starting the class up.
+  * delimiter - (`string`: defaults no '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
 
+#### Delimiter Usage:
+	var HM = new HistoryManager({delimiter:'!'}); //will add support for the google syntax
 Events
 -------
 ### Hash Listener

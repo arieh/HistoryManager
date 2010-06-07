@@ -17,6 +17,10 @@ HistoryManager Method: constructor {#HistoryManager:constructor}
 
 * blank_page - (`string`: defaults to `blank.html`) an alternative path to the blank.html file. 
 * start - (`bool`: defaults to `false`) whether to start the listener on construction
+* delimiter - (`string`: defaults no '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
+
+### Delimiter Usage:
+	var HM = new HistoryManager({delimiter:'!'}); //will add support for the google syntax
 
 
 HistoryManager Method: Set {#HistoryManager:set}

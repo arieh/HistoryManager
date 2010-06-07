@@ -114,9 +114,9 @@ var HashListener = new Class({
 	},
 	setHash : function(newHash){
 		window.location.hash = this.currentLocation = newHash;
-		if (window.onhashchange) return;
+		
 		this.fireEvent('hashChanged',newHash);
-		this.fireEvent('hash-changed',hash);
+		this.fireEvent('hash-changed',newHash);
 	},
 	getHash : function(){
 		var m;

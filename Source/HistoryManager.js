@@ -16,6 +16,9 @@ provides: [HistoryManager]
 */
 var HistoryManager = new Class({
 	Extends : HashListener,
+	options : {
+		delimiter : ''
+	}, 
 	state : new Hash({}),
 	stateCache : new Hash({}),
 	fromHash : false,
@@ -26,6 +29,9 @@ var HistoryManager = new Class({
 	},
 	updateState : function (hash){
 		var $this = this;
+		
+		if (this.options.delimiter) hash = hash.substr(this.options.delimiter.length);
+		
 		hash = new Hash(JSON.decode(decodeURIComponent(hash)));
 		
 		this.state.each(function(value,key){
@@ -65,7 +71,7 @@ var HistoryManager = new Class({
 		
 		newState.set(key,value);
 		
-		this.updateHash(newState.toJSON());
+		this.updateHash(this.options.delimiter + newState.toJSON());
 		
 		return this;
 	},
@@ -74,7 +80,7 @@ var HistoryManager = new Class({
 		
 		newState.erase(key);
 		
-		this.updateHash(newState.toJSON());
+		this.updateHash(this.options.delimiter + newState.toJSON());
 		
 		return this;
 	}

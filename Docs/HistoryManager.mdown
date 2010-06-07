@@ -62,7 +62,9 @@ HistoryManager Method: Stop {#HistoryManager:stop}
 	
 HistoryManaget: Events {#HistoryManager:Events}
 -------
-<big>The class is event-based, but doesn't have prefixed events. The events change according to the key being observed. It is done thus (where '#' is the name of the key):</big>
+<big>The class is event-based, but doesn't have prefixed events. The events change according to the key being observed. 
+The names point to one of 3 states a value might be in: Added, Changed and Removed.</big>
+<small>'#' is the name of the key beeing observed</small>
 
   * '#-added' : will be fired when an unset key is given a value. will pass the new value as parameter
   * '#-changed' : will be fired when a key's value has been changed. will pass the new value as parameter
@@ -77,7 +79,10 @@ HistoryManager: Example {#HistoryManager:Example}
 	HM.addEvent( 'MyVar-changed' , function(myvar){console.log('changed '+myvar)} );
 	HM.addEvent( 'MyVar-removed' , function(myvar){console.log('removed '+myvar)} );
 	
-	// it is strongly recommended to set the events before starting the object
+	/*
+	 * it is strongly recommended to set the events before starting the object.
+	 * this is because we want the hash to be analyzed when we enter the site through a bookmark/history.
+	 */
 	HM.start();
 	
 	HM.set('MyVar',1); //will log 'added 1'

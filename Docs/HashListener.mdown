@@ -29,4 +29,4 @@ HashListener Method: updateHash {#HashListener:updateHash}
 
 HashListener: Events {#HashListener:Events}
 --------
-  * `hash-changed` - will be fired whenever the hash was changed - whether by method or by browser behaviour. will pass the new hash value as parameter 
+  * `hashChanged` - will be fired whenever the hash was changed - whether by method or by browser behaviour. will pass the new hash value as parameter 

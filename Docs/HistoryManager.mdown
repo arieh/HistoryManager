@@ -36,6 +36,14 @@ HistoryManager Method: Set {#HistoryManager:set}
 1. key - (`string`) A key identifier
 2. elements - (`mixed`) whatever value you want to set to that key (must be JSON encodable)
 
+A note about set. Because of the way the hash is analyzed, changing the order of the inner members of a value will cuase a state-change event. 
+This is because i'm convering the objects to JSON instead of parsing them to save speed.
+If you do not controll the order of the values in your objects, make sure you check this manuly.
+An Example for this:
+
+	HM.set('someValue',{a:'a',b:'b'});
+	HM.set('someValue',{b:'b',a:'a'}); //will fire someValue-changed although values aren't actualy modified. 
+
 HistoryManager Method: Remove {#HistoryManager:remove}
 -----------------------------
 <big>Used to remove a state from the domain. Will remove `key` and its value from the state.</big>

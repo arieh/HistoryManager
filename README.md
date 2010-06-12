@@ -74,6 +74,8 @@ It's usage can be a bit confusing but it actually tries to use JavaScript's even
 	
 
 Note that this can be done with multiple value names, and can use any JSON-encodable data format as values (such as strings, arrays and objects).
+Another note - because of the way the hash is analyzed, changing the order of the inner members of a value will cuase a state-change event. This is because i'm convering the objects to JSON instead of parsing them to save speed.
+If you do not controll the order of the values in your objects, make sure you check this manuly.
 
 Options
 ---------

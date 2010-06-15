@@ -17,6 +17,8 @@ Tested With: FF3.5, Safari 4.0.4, Safari 5, Chrome 3, Opera 10.10 and IE6, IE7 e
 
 ![Screenshot](http://github.com/arieh/HistoryManager/raw/master/screenshot.png)
 
+*NOTE: version 1.0 will add an non-backward-compatible change with the events system. make sure you read the README*
+
 How To Use
 -------------
 For both classes, you must supply a blank.html (comes with the package), and point the classes to it (for IE<8 support). by default the classes assume it's location at the root dir.
@@ -101,6 +103,7 @@ Events
 
 ### History Manager
 Along side the `hashChanged` event, the class supports 3 dynamic Events, which point to the 3 states a value might hold ('*' notes the value's name):
+*NOTE: version 1.0 will add an non-backward-compatible change with the events system. make sure you read the README*
 
   * ' * -added' : Will fire when a new value is added. Will send the new value to the function.
   * ' * -changed' : Will fire when a value is modified. Will send the new value to the function.

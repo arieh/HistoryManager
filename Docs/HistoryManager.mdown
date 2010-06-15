@@ -78,9 +78,10 @@ HistoryManaget: Events {#HistoryManager:Events}
 The names point to one of 3 states a value might be in: Added, Changed and Removed.</big>
 <small>'#' is the name of the key beeing observed</small>
 
-  * '#-added' : will be fired when an unset key is given a value. will pass the new value as parameter
-  * '#-changed' : will be fired when a key's value has been changed. will pass the new value as parameter
-  * '#-removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter
+  * '#-added' : will be fired when an unset key is given a value. will pass the new value as parameter.
+  * '#-updated' : will be fired when a current key's value was changed. will pass the new value as parameter.
+  * '#-removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter.
+  * '#-changed' : will fire when any a key is added/updated. will pass the new value as parameter. *NOTE: this will fire alongside the add/updated events*
   
 HistoryManager: Example {#HistoryManager:Example}
 --------
@@ -88,7 +89,7 @@ HistoryManager: Example {#HistoryManager:Example}
 	var HM = new HistoryManager();
 	
 	HM.addEvent( 'MyVar-added'   , function(myvar){console.log('added '+myvar)} );
-	HM.addEvent( 'MyVar-changed' , function(myvar){console.log('changed '+myvar)} );
+	HM.addEvent( 'MyVar-updated' , function(myvar){console.log('changed '+myvar)} );
 	HM.addEvent( 'MyVar-removed' , function(myvar){console.log('removed '+myvar)} );
 	
 	/*

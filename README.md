@@ -17,6 +17,8 @@ Tested With: FF3.5, Safari 4.0.4, Safari 5, Chrome 3, Opera 10.10 and IE6, IE7 e
 
 ![Screenshot](http://github.com/arieh/HistoryManager/raw/master/screenshot.png)
 
+*NOTE: this version's events are incompatible with versions prior to 1*
+
 How To Use
 -------------
 For both classes, you must supply a blank.html (comes with the package), and point the classes to it (for IE<8 support). by default the classes assume it's location at the root dir.
@@ -58,7 +60,7 @@ It's usage can be a bit confusing but it actually tries to use JavaScript's even
 	HM.addEvent('someValue-added',function(new_value){
 		console.log('someValue was added:'+new_value);
 	});
-	HM.addEvent('someValue-changed',function(new_value){
+	HM.addEvent('someValue-updated',function(new_value){
 		console.log('someValue was changed:'+new_value);
 	});
 	HM.addEvent('someValue-removed',function(last_value){
@@ -101,7 +103,10 @@ Events
 
 ### History Manager
 Along side the `hashChanged` event, the class supports 3 dynamic Events, which point to the 3 states a value might hold ('*' notes the value's name):
+*NOTE: this is a change that is incompatibale with previous versions*
 
-  * ' * -added' : Will fire when a new value is added. Will send the new value to the function.
-  * ' * -changed' : Will fire when a value is modified. Will send the new value to the function.
-  * ' * -removed' : Will fire when a value is removed. Will send the last value to the function.
+  * ' * -added' : will be fired when an unset key is given a value. will pass the new value as parameter.
+  * ' * -updated' : will be fired when a current key's value was changed. will pass the new value as parameter.
+  * ' * -removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter.
+  * ' * -changed' : will fire when any a key is added/updated. will pass the new value as parameter. *NOTE: this will fire alongside the add/updated events*
+ 

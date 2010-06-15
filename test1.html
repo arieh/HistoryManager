@@ -29,6 +29,7 @@
 	$('step').addEvent('click',function(){
 		var value = testValues[i++];
 		HM.set(value[0],value[1]);
+		if (i==4) i = 0;
 	});
 	
 	function updateSelect(value){

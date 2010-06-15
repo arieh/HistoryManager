@@ -29,7 +29,7 @@
 	$('step').addEvent('click',function(){
 		var value = testValues[i++];
 		HM.set(value[0],value[1]);
-		if (i==4) i = 0;
+		if (i==4) i=0;
 	});
 	
 	function updateSelect(value){
@@ -43,10 +43,11 @@
 	HM.addEvents({
 		 'select-changed' :updateSelect
 		, 'b-changed' :updateB
+		,'select-added' :updateSelect
+		, 'b-added' :updateB
 	});
 	
 	HM.start();
-	
 </script>
 </body>
 </html>

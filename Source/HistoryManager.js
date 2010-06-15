@@ -62,7 +62,8 @@ var HistoryManager = new Class({
 		
 		hash.each(function(value,key){
 			$this.state.set(key,value);
-			$this.stateCache.set(key,JSON.encode(value));
+			v_type = $type(hash[key]);
+			$this.stateCache.set(key,(v_type=='string' || v_type=='number' || v_type =='boolean') ? value : JSON.encode(value));
 			$this.fireEvent(key+'-added',[value]);
 		});
 	},

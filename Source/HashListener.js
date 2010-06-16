@@ -16,7 +16,9 @@ provides: [HashListener]
 
 ...
 */
-
+$extend(Element.NativeEvents, {
+	hashchange: 1
+});
 var HashListener = new Class({
 	Implements : [Options,Events],
 	options : {
@@ -42,18 +44,18 @@ var HashListener = new Class({
 		
 		 // IE8 in IE7 mode defines window.onhashchange, but never fires it...
         if (
-			window.onhashchange &&
+			('onhashchange' in window) &&
             (typeof(document.documentMode) == 'undefined' || document.documentMode > 7)
 		   ){
 				// The HTML5 way of handling DHTML history...
-				window.addEvent('onhashchange' , function () {
+				window.addEvent('hashchange' , function () {
 					var hash = $this.getHash();
 					if (hash == $this.currentHash) {
 						return;
 					}
 					$this.fireEvent('hashChanged',hash);
 					$this.fireEvent('hash-changed',hash);
-				});
+				});;
         } else  {
 			if (this.useIframe){
 				this.initializeHistoryIframe();
@@ -114,6 +116,11 @@ var HashListener = new Class({
 	},
 	setHash : function(newHash){
 		window.location.hash = this.currentLocation = newHash;
+		
+		if (
+			('onhashchange' in window) &&
+            (typeof(document.documentMode) == 'undefined' || document.documentMode > 7)
+		   ) return;
 		
 		this.fireEvent('hashChanged',newHash);
 		this.fireEvent('hash-changed',newHash);

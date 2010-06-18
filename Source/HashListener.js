@@ -16,6 +16,9 @@ provides: [HashListener]
 
 ...
 */
+$extend(Element.NativeEvents, {
+	hashchange: 1
+});
 
 var HashListener = new Class({
 	Implements : [Options,Events],
@@ -46,7 +49,7 @@ var HashListener = new Class({
             (typeof(document.documentMode) == 'undefined' || document.documentMode > 7)
 		   ){
 				// The HTML5 way of handling DHTML history...
-				window.addEvent('onhashchange' , function () {
+				window.addEvent('hashchange' , function () {
 					var hash = $this.getHash();
 					if (hash == $this.currentHash) {
 						return;

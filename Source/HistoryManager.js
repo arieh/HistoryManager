@@ -54,6 +54,7 @@ var HistoryManager = new Class({
 				nvalue = hash.get(key);
 				$this.state.set(key,nvalue);
 				$this.stateCache.set(key,comperable);
+				$this.fireEvent(key+'-updated',[nvalue]);	
 				$this.fireEvent(key+'-changed',[nvalue]);	
 			}
 			
@@ -64,7 +65,8 @@ var HistoryManager = new Class({
 			$this.state.set(key,value);
 			v_type = $type(hash[key]);
 			$this.stateCache.set(key,(v_type=='string' || v_type=='number' || v_type =='boolean') ? value : JSON.encode(value));
-			$this.fireEvent(key+'-added',[value]);
+			$this.fireEvent(key+'-added',[value]);			
+			$this.fireEvent(key+'-changed',[value]);	
 		});
 	},
 	set : function(key,value){

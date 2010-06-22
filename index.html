@@ -21,7 +21,7 @@
 <script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HashListener.js'></script>
 <script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HistoryManager.js'></script>
 <script type='text/javascript'>
-	var i=0, HM = new HistoryManager();
+	var i=0, HM = new HistoryManager({'delimiter':'!'});
 	
 	$('add').addEvent('click',function(){
 		HM.set('aaa',i++);
@@ -41,7 +41,7 @@
 	HM.addEvent('aaa-added',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ad'}));
 	});
-	HM.addEvent('aaa-changed',function(value){
+	HM.addEvent('aaa-updated',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ch'}));
 	});
 	HM.addEvent('aaa-removed',function(value){
@@ -50,7 +50,7 @@
 	HM.addEvent('bbb-added',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ad'}));
 	});
-	HM.addEvent('bbb-changed',function(value){
+	HM.addEvent('bbb-updated',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ch'}));
 	});
 	HM.addEvent('bbb-removed',function(value){

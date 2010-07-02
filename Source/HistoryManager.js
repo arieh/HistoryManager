@@ -15,24 +15,49 @@ provides: [HistoryManager]
 ...
 */
 var HistoryManager = new Class({
+	
 	Extends : HashListener,
+	
 	options : {
-		delimiter : ''
+		delimiter : '',
+		serializeHash: null,
+		deserializeHash: null,
 	}, 
+	
 	state : new Hash({}),
 	stateCache : new Hash({}),
-	fromHash : false,
-	fromHandle :false,
+	
+	
+	
 	initialize : function(options){
-		this.parent(options);		
+		this.parent(options);
+		
+		if (null !== this.options.deserializeHash && null !== this.options.serializeHash)
+		{
+			this.serializeHash = this.options.serializeHash;
+			this.deserializeHash = this.options.deserializeHash;
+		}
+		
 		this.addEvent('hashChanged',this.updateState.bind(this));
 	},
+	
+
+	serializeHash : function (d) {
+		return d.toJSON();
+	},
+	
+
+	deserializeHash : function (d) {
+		return new Hash(JSON.decode(decodeURIComponent(d)));
+	},
+	
+	
 	updateState : function (hash){
 		var $this = this;
 		
 		if (this.options.delimiter) hash = hash.substr(this.options.delimiter.length);
-		
-		hash = new Hash(JSON.decode(decodeURIComponent(hash)));
+
+		hash = this.deserializeHash(hash);
 		
 		this.state.each(function(value,key){
 			var nvalue, comperable, h_type;
@@ -69,21 +94,23 @@ var HistoryManager = new Class({
 			$this.fireEvent(key+'-changed',[value]);	
 		});
 	},
+	
 	set : function(key,value){
 		var newState = new Hash(this.state);
 		
 		newState.set(key,value);
 		
-		this.updateHash(this.options.delimiter + newState.toJSON());
+		this.updateHash(this.options.delimiter + this.serializeHash(newState));
 		
 		return this;
 	},
+	
 	remove : function(key){
 		var newState = new Hash(this.state);
 		
 		newState.erase(key);
 		
-		this.updateHash(this.options.delimiter + newState.toJSON());
+		this.updateHash(this.options.delimiter + this.serializeHash(newState));
 		
 		return this;
 	}

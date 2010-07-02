@@ -100,17 +100,17 @@ Both classes use the same options:
 	var HM = new HistoryManager({delimiter:'!'}); //will add support for the google syntax
 	
 #### Custom (de)serializer Usage:
-~~~~~~
-var HM = new HistoryManager({
-	'delimiter':'!',
-	serializeHash: function (h) {
-		return h.toQueryString();
-	},
-	deserializeHash: function (s) {
-		return new Hash(s.parseQueryString());
-	}
-});
-~~~~~~
+
+	var HM = new HistoryManager({
+		'delimiter':'!',
+		serializeHash: function (h) {
+			return h.toQueryString();
+		},
+		deserializeHash: function (s) {
+			return new Hash(s.parseQueryString());
+		}
+	});
+
 
 Events
 -------

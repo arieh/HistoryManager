@@ -1,0 +1,65 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+	<title>History-Manager Demo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
+</head>
+<body>
+<ul>
+	<li><a href='javascript:;' id='step'>Click To Step</a></li>
+</ul>
+<ul id='result'></ul>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js'></script>
+<script src="../Source/mootools-1-1.2.4.4-more.js" type="text/javascript" charset="utf-8"></script>
+
+<script type='text/javascript' src='../Source/HashListener.js'></script>
+<script type='text/javascript' src='../Source/HistoryManager.js'></script>
+<script type='text/javascript'>
+	var i=0;
+	var HM = new HistoryManager({
+		'delimiter':'!',
+		serializeHash: function (h) {
+			return h.toQueryString();
+		},
+		deserializeHash: function (s) {
+			return new Hash(s.parseQueryString());
+		}
+	});
+	var res = $('result');
+	var testValues = [
+		['select','L1']
+		,['b','hide']
+		,['select','L1;L2']
+		,['select', ['L1','L2']]
+		,['b','hide']
+	];
+	
+	$('step').addEvent('click',function(){
+		var value = testValues[i++];
+		HM.set(value[0],value[1]);
+		if (i==4) i=0;
+	});
+	
+	function updateSelect(value){
+		res.adopt(new Element('li',{'html':'select: '+value}));
+	}
+	
+	function updateB(value){
+		res.adopt(new Element('li',{'html':'b: '+value}));
+	}
+	
+	HM.addEvents({
+		 'select-changed' :updateSelect
+		, 'b-changed' :updateB
+		,'select-added' :updateSelect
+		, 'b-added' :updateB
+	});
+	
+	HM.start();
+	
+</script>
+</body>
+</html>

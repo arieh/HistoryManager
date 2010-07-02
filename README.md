@@ -93,9 +93,25 @@ Both classes use the same options:
   * blank_page : an alternative source for an iframe file. *note that the file must be valid for IE<8 support*
   * start : whether to start service on creation (default:false). this is not recomended, since you want the events to be registered before starting the class up.
   * delimiter - (`string`: defaults no '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
+  * serializeHash - `String function (aHash)` (_Optional_, use with `deserializeHash`) A callback function which serializes a Hash
+  * deserializeHash - `Hash function (aString)` (_Optional_, use with `serializeHash`) A callback function which deserializes a String to a Hash
 
 #### Delimiter Usage:
 	var HM = new HistoryManager({delimiter:'!'}); //will add support for the google syntax
+	
+#### Custom (de)serializer Usage:
+~~~~~~
+var HM = new HistoryManager({
+	'delimiter':'!',
+	serializeHash: function (h) {
+		return h.toQueryString();
+	},
+	deserializeHash: function (s) {
+		return new Hash(s.parseQueryString());
+	}
+});
+~~~~~~
+
 Events
 -------
 ### Hash Listener

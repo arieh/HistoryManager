@@ -13,7 +13,7 @@
 </ul>
 <ul id='result'></ul>
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js'></script>
-<script src="../Source/mootools-1-1.2.4.4-more.js" type="text/javascript" charset="utf-8"></script>
+<script src="mootools-1-1.2.4.4-more.js" type="text/javascript" charset="utf-8"></script>
 
 <script type='text/javascript' src='../Source/HashListener.js'></script>
 <script type='text/javascript' src='../Source/HistoryManager.js'></script>
@@ -22,7 +22,7 @@
 	var HM = new HistoryManager({
 		'delimiter':'!',
 		serializeHash: function (h) {
-			return h.toQueryString();
+			return h.toQueryString().substr(1);
 		},
 		deserializeHash: function (s) {
 			return new Hash(s.parseQueryString());

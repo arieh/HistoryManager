@@ -27,30 +27,22 @@ var HistoryManager = new Class({
 	state : new Hash({}),
 	stateCache : new Hash({}),
 	
-	
-	
 	initialize : function(options){
 		this.parent(options);
-		
-		if (null !== this.options.deserializeHash && null !== this.options.serializeHash)
-		{
-			this.serializeHash = this.options.serializeHash;
-			this.deserializeHash = this.options.deserializeHash;
-		}
+
+		this.serializeHash = this.options.serializeHash || this.serializeHash;
+		this.deserializeHash = this.options.deserializeHash || this.deserializeHash;
 		
 		this.addEvent('hashChanged',this.updateState.bind(this));
 	},
-	
 
 	serializeHash : function (d) {
 		return d.toJSON();
 	},
-	
 
 	deserializeHash : function (d) {
 		return new Hash(JSON.decode(decodeURIComponent(d)));
 	},
-	
 	
 	updateState : function (hash){
 		var $this = this;

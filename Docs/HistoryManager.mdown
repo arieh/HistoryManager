@@ -18,10 +18,22 @@ HistoryManager Method: constructor {#HistoryManager:constructor}
 * blank_page - (`string`: defaults to `blank.html`) an alternative path to the blank.html file. 
 * start - (`bool`: defaults to `false`) whether to start the listener on construction
 * delimiter - (`string`: defaults no '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
+* serializeHash - `string function (aHash)` (_Optional_, use with `deserializeHash`) A callback function which serializes a Hash
+* deserializeHash - `Hash function (aString)` (_Optional_, use with `serializeHash`) A callback function which deserializes a String to a Hash
 
 ### Delimiter Usage:
 	var HM = new HistoryManager({delimiter:'!'}); //will add support for the google syntax
 
+### Custom (de)serializer Usage:
+	// using URI query syntax for data instead of JSON
+	var HM = new HistoryManager({
+		serializeHash: function (h) {
+			return h.toQueryString();
+		},
+		deserializeHash: function (s) {
+			return new Hash(s.parseQueryString());
+		}
+	});
 
 HistoryManager Method: Set {#HistoryManager:set}
 ---------------------------

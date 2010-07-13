@@ -5,58 +5,79 @@
 <html>
 <head>
 	<title>History-Manager Demo</title>
+    <meta type='description' value='A Demo on how to use the mootools class history manager' />
 	<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
+    <style type="text/css">
+    #box{height:150px; width:150px; line-height:150px; vertical-align:middle; text-align:center; border:2px solid black; margin:0 auto;}
+    
+    #box.white{background:#fff}
+    #box.blue{background:#00f}
+    #box.red{background:#f00}
+    #box.green{background:#0f0}
+    
+    #container{width:900px; padding:30px; height:450px; background:#eee; border:3px solid #bbb; margin:0 auto;}
+    h1,h2{text-align:center}
+    ul{text-align:center}
+    li{display:inline; list-style-type:none;}
+    </style>
 </head>
 <body>
-<ul>
-	<li><a href='javascript:;' id='add'>Add/Change (aaa)</a></li>
-	<li><a href="javascript:;" id='add-multi'>Add/Change Multiple (bbb)</a></li>
-	<li><a href='javascript:;' id='remove'>Remove (aaa)</a></li>
-	<li><a href='javascript:;' id='stop'>Stop</a></li>
-	<li><a href='javascript:;' id='start'>Start</a></li>
-	
+<div id='container'>
+<h1>History Manager Demo</h1>
+<h2>Use the links below to change the state of tthe box. Use the back/forward buttons to navigate the changes made.</h2>
+<div id='box' class='white'>I'm a fancy Box!</div>
+<ul id='state-nav'>
+	<li><a href="javascript:;" id="blue">Make Blue</a></li>
+	<li><a href="javascript:;" id="red">Make Red</a></li>
+	<li><a href="javascript:;" id="green">Make Green</a></li>
+	<li><a href="javascript:;" id="increase">Increase Size</a></li>
+	<li><a href="javascript:;" id="decrease">Descrease Size</a></li>
 </ul>
-<ul id='result'></ul>
+<ul>
+	<li><a href="http://mootools.net/forge/p/historymanager" target='_blank'>Forge Page</a></li>
+	<li><a href="http://moodocs.net/arieh/historymanager/HistoryManager" target='_blank'>Moodocs Page</a></li>
+	<li><a href="http://blog.arieh.co.il/posts/open/introduction-to-historymanager" target='_blank'>More Reading</a></li>
+</ul>
+</div>
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js'></script>
 <script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HashListener.js'></script>
 <script type='text/javascript' src='http://github.com/arieh/HistoryManager/raw/master/Source/HistoryManager.js'></script>
 <script type='text/javascript'>
-	var i=0, HM = new HistoryManager({'delimiter':'!'});
-	
-	$('add').addEvent('click',function(){
-		HM.set('aaa',i++);
-	});
-	
-	(function(){
-		var i=0,j=0;
-		$('add-multi').addEvent('click',function(){
-			HM.set('bbb',[i++,j++]);
-		});
-	})()
-	
-	$('remove').addEvent('click',function(){
-		HM.remove('aaa');
-	});
-	
-	HM.addEvent('aaa-added',function(value){
-		$('result').adopt(new Element('li',{'html':value+'ad'}));
-	});
-	HM.addEvent('aaa-updated',function(value){
-		$('result').adopt(new Element('li',{'html':value+'ch'}));
-	});
-	HM.addEvent('aaa-removed',function(value){
-		$('result').adopt(new Element('li',{'html':value+'rm'}));
-	});
-	HM.addEvent('bbb-added',function(value){
-		$('result').adopt(new Element('li',{'html':value+'ad'}));
-	});
-	HM.addEvent('bbb-updated',function(value){
-		$('result').adopt(new Element('li',{'html':value+'ch'}));
-	});
-	HM.addEvent('bbb-removed',function(value){
-		$('result').adopt(new Element('li',{'html':value+'rm'}));
-	});
-	HM.start();
+//<!CDATA[
+var box = document.id('box')
+    , size = 150
+    , colors = ['red','green','blue','white']
+    , i = 0
+    , HM = new HistoryManager;
+
+function switchColor(color){
+    if (colors.contains(color)) box.set('class',color);
+}
+
+function changeSize(amount){
+    var c_size = size + amount*20;
+    box.setStyles({
+        'height':c_size
+        ,'width':c_size
+        ,'line-height':c_size
+    });
+}
+
+HM.addEvent('color-changed',switchColor);
+HM.addEvent('color-removed',function(){switchColor('white');});
+
+HM.addEvent('size-changed',changeSize);
+HM.addEvent('size-removed',function(){changeSize(i=0)});
+
+$('red').addEvent('click',function(){HM.set('color','red');});
+$('green').addEvent('click',function(){HM.set('color','green');});
+$('blue').addEvent('click',function(){HM.set('color','blue');});
+
+$('increase').addEvent('click',function(){HM.set('size',++i);});
+$('decrease').addEvent('click',function(){HM.set('size',--i);});
+
+HM.start();
+//]]>	
 </script>
 </body>
 </html>

@@ -58,13 +58,13 @@ It's usage can be a bit confusing but it actually tries to use JavaScript's even
 	 * Should be done before observer is started, so that they will 
 	 * also be used when site is opened from history/bookmark.
 	 */
-	HM.addEvent('someValue-added',function(new_value){
+	HM.addEvent('someValue:added',function(new_value){
 		console.log('someValue was added:'+new_value);
 	});
-	HM.addEvent('someValue-updated',function(new_value){
+	HM.addEvent('someValue:updated',function(new_value){
 		console.log('someValue was changed:'+new_value);
 	});
-	HM.addEvent('someValue-removed',function(last_value){
+	HM.addEvent('someValue:removed',function(last_value){
 		console.log('someValue was removed:'+new_value);
 	});
 	
@@ -92,9 +92,15 @@ Both classes use the same options:
 
   * blank_page : an alternative source for an iframe file. *note that the file must be valid for IE<8 support*
   * start : whether to start service on creation (default:false). this is not recomended, since you want the events to be registered before starting the class up.
-  * delimiter - (`string`: defaults no '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
+ 
+  
+HistoryManager comes with these additional options:
+
+ * delimiter - (`string`: defaults to '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
   * serializeHash - `String function (aHash)` (_Optional_, use with `deserializeHash`) A callback function which serializes a Hash
   * deserializeHash - `Hash function (aString)` (_Optional_, use with `serializeHash`) A callback function which deserializes a String to a Hash
+  * compat - (`boolean` : defaults to `false`) whether to file deprecated event style as well (key-added aongside key:added) 
+
 
 #### Delimiter Usage:
 	var HM = new HistoryManager({delimiter:'!'}); //will add support for the google syntax

@@ -99,7 +99,7 @@ HistoryManager comes with these additional options:
  * delimiter - (`string`: defaults to '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
   * serializeHash - `String function (aHash)` (_Optional_, use with `deserializeHash`) A callback function which serializes a Hash
   * deserializeHash - `Hash function (aString)` (_Optional_, use with `serializeHash`) A callback function which deserializes a String to a Hash
-  * compat - (`boolean` : defaults to `false`) whether to file deprecated event style as well (key-added aongside key:added) 
+  * compat - (`boolean` : defaults to `false`) whether to file deprecated event style as well (`key-added` aongside `key:added`) 
 
 
 #### Delimiter Usage:
@@ -131,11 +131,10 @@ The names point to one of 3 states a value might be in: Added, Changed and Remov
 
 For every change that goes on on a specific key, an event with that key's name will be fired, passing it's value as parameter.
 
-<small>'#' is the name of the key beeing observed</small>
 <small>As of v1.1, all event names will be using colon seperation. For dash seperation, use the compat options.</small>
 
-  * '#:added' : will be fired when an unset key is given a value. will pass the new value as parameter.
-  * '#:updated' : will be fired when a current key's value was changed. will pass the new value as parameter.
-  * '#:removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter.
-  * '#:changed' : will fire when any a key is added/updated. will pass the new value as parameter. *NOTE: this will fire alongside the add/updated events*
+  * `key`':added' : will be fired when an unset key is given a value. will pass the new value as parameter.
+  * `key`':updated' : will be fired when a current key's value was changed. will pass the new value as parameter.
+  * `key`':removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter.
+  * `key`':changed' : will fire when any a key is added/updated. will pass the new value as parameter. *NOTE: this will fire alongside the add/updated events*
  

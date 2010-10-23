@@ -20,6 +20,7 @@ HistoryManager Method: constructor {#HistoryManager:constructor}
 * delimiter - (`string`: defaults no '') a beginning delimiter to add to the hash, to support the new Google AJAX syntax (#!)
 * serializeHash - `string function (aHash)` (_Optional_, use with `deserializeHash`) A callback function which serializes a Hash
 * deserializeHash - `Hash function (aString)` (_Optional_, use with `serializeHash`) A callback function which deserializes a String to a Hash
+* compat - (`boolean` : defaults to `false`) whether to file deprecated event style as well (key-added aongside key:added)
 
 ### Delimiter Usage:
 	var HM = new HistoryManager({delimiter:'!'}); //will add support for the google syntax

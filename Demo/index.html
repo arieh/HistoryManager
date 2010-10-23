@@ -38,22 +38,22 @@
 		HM.remove('aaa');
 	});
 	
-	HM.addEvent('aaa-added',function(value){
+	HM.addEvent('aaa:added',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ad'}));
 	});
-	HM.addEvent('aaa-updated',function(value){
+	HM.addEvent('aaa:updated',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ch'}));
 	});
-	HM.addEvent('aaa-removed',function(value){
+	HM.addEvent('aaa:removed',function(value){
 		$('result').adopt(new Element('li',{'html':value+'rm'}));
 	});
-	HM.addEvent('bbb-added',function(value){
+	HM.addEvent('bbb:added',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ad'}));
 	});
-	HM.addEvent('bbb-updated',function(value){
+	HM.addEvent('bbb:updated',function(value){
 		$('result').adopt(new Element('li',{'html':value+'ch'}));
 	});
-	HM.addEvent('bbb-removed',function(value){
+	HM.addEvent('bbb:removed',function(value){
 		$('result').adopt(new Element('li',{'html':value+'rm'}));
 	});
 	HM.start();

@@ -119,12 +119,17 @@ Events
   * 'hashChanged' : will fire whenever the hash was changed (whether by the back-button or the class's methods). will send the new hash as a paramater to the function
 
 ### History Manager
-Along side the `hashChanged` event, the class supports 3 dynamic Events, which point to the 3 states a value might hold ('*' notes the value's name):
 
-*NOTE: this is a change that is incompatibale with previous versions*
+The class is event-based, but doesn't have prefixed events. The events change according to the key being observed. 
+The names point to one of 3 states a value might be in: Added, Changed and Removed.
 
-  * ' * -added' : will be fired when an unset key is given a value. will pass the new value as parameter.
-  * ' * -updated' : will be fired when a current key's value was changed. will pass the new value as parameter.
-  * ' * -removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter.
-  * ' * -changed' : will fire when any a key is added/updated. will pass the new value as parameter. *NOTE: this will fire alongside the add/updated events*
+For every change that goes on on a specific key, an event with that key's name will be fired, passing it's value as parameter.
+
+<small>'#' is the name of the key beeing observed</small>
+<small>As of v1.1, all event names will be using colon seperation. For dash seperation, use the compat options.</small>
+
+  * '#:added' : will be fired when an unset key is given a value. will pass the new value as parameter.
+  * '#:updated' : will be fired when a current key's value was changed. will pass the new value as parameter.
+  * '#:removed' : will be fired when a key has been removed from the state. will pas the key's last value as parameter.
+  * '#:changed' : will fire when any a key is added/updated. will pass the new value as parameter. *NOTE: this will fire alongside the add/updated events*
  

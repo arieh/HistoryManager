@@ -63,11 +63,11 @@ function changeSize(amount){
     });
 }
 
-HM.addEvent('color-changed',switchColor);
-HM.addEvent('color-removed',function(){switchColor('white');});
+HM.addEvent('color:changed',switchColor);
+HM.addEvent('color:removed',function(){switchColor('white');});
 
-HM.addEvent('size-changed',changeSize);
-HM.addEvent('size-removed',function(){changeSize(i=0)});
+HM.addEvent('size:changed',changeSize);
+HM.addEvent('size:removed',function(){changeSize(i=0)});
 
 $('red').addEvent('click',function(){HM.set('color','red');});
 $('green').addEvent('click',function(){HM.set('color','green');});

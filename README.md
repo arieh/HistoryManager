@@ -19,6 +19,7 @@ Tested With: FF3.5, Safari 4.0.4, Safari 5, Chrome 3, Opera 10.10 and IE6, IE7 e
 
 
 *NOTE: this version's events are incompatible with versions prior to 1*
+
 *NOTE: As of v.1.3 the class only support mootools 1.3. 1.2 is considered stable, so if you need 1.2.4 support you can download it instead *
 
 How To Use

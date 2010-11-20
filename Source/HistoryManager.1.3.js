@@ -9,7 +9,7 @@ authors:
 
 requires:
 - Core/1.3 : JSON
-- HistoryManager/0.9.3: HashListener
+- HistoryManager/1.2: HashListener
 
 provides: [HistoryManager]
 

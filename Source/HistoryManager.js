@@ -8,13 +8,17 @@ authors:
 - Arieh Glazer
 
 requires:
-- HistoryManager/0.9.3: HashListener
+- Core/1.3 : JSON
+- HistoryManager/1.2: HashListener
 
 provides: [HistoryManager]
 
 ...
 */
-var HistoryManager = new Class({
+
+(function($,undef){
+
+HistoryManager = new Class({
 	
 	Extends : HashListener,
 	
@@ -25,8 +29,8 @@ var HistoryManager = new Class({
         compat : false
 	}, 
 	
-	state : new Hash({}),
-	stateCache : new Hash({}),
+	state : {},
+	stateCache : {},
 	
 	initialize : function(options){
 		this.parent(options);
@@ -38,11 +42,11 @@ var HistoryManager = new Class({
 	},
 
 	serializeHash : function (d) {
-		return d.toJSON();
+		return JSON.encode(d);
 	},
 
 	deserializeHash : function (d) {
-		return new Hash(JSON.decode(decodeURIComponent(d)));
+		return JSON.decode(decodeURIComponent(d));
 	},
 	
 	updateState : function (hash){
@@ -51,12 +55,12 @@ var HistoryManager = new Class({
 		if (this.options.delimiter) hash = hash.substr(this.options.delimiter.length);
 
 		hash = this.deserializeHash(hash);
-		
-		this.state.each(function(value,key){
+        
+        Object.each(this.state,function(value,key){
 			var nvalue, comperable, h_type;
 
-			if (!hash.has(key)){
-				nvalue = $this.state.get(key);
+			if (!hash || hash[key]===undef){
+				nvalue = $this.state[key];
 				
                 if ($this.options.compat){
                     $this.fireEvent(key+'-removed',[nvalue]);
@@ -64,20 +68,20 @@ var HistoryManager = new Class({
                 
                 $this.fireEvent(key+':removed',[nvalue]);
                 $this.fireEvent(key,[nvalue]);
-				$this.state.erase(key);
-				$this.stateCache.erase(key);
-				hash.erase(key);
+				delete $this.state[key];
+				delete $this.stateCache[key];
+				if (hash && hash[key]) delete hash[key];
 				return;
 			}
 			
-			h_type = $type(hash[key]);
+			h_type = typeOf(hash[key]);
 			
 			comperable = (h_type=='string' || h_type=='number' || h_type =='boolean') ? hash[key] : JSON.encode(hash[key]);
 			
 			if (comperable != $this.stateCache[key]){
-				nvalue = hash.get(key);
-				$this.state.set(key,nvalue);
-				$this.stateCache.set(key,comperable);
+                nvalue = hash[key];
+				$this.state[key] = nvalue;
+				$this.stateCache[key] =comperable;
 				
                 if ($this.options.compat){
                     $this.fireEvent(key+'-updated',[nvalue]);
@@ -89,13 +93,14 @@ var HistoryManager = new Class({
                 $this.fireEvent(key,[nvalue]);
 			}
 			
-			hash.erase(key);		
+			delete hash[key];
 		});
 		
-		hash.each(function(value,key){
-			$this.state.set(key,value);
-			v_type = $type(hash[key]);
-			$this.stateCache.set(key,(v_type=='string' || v_type=='number' || v_type =='boolean') ? value : JSON.encode(value));
+		Object.each(hash,function(value,key){
+			$this.state[key]=value;
+        
+			v_type = typeOf(hash[key]);
+			$this.stateCache[key] = (v_type=='string' || v_type=='number' || v_type =='boolean') ? value : JSON.encode(value);
 				
                 if ($this.options.compat){
                     $this.fireEvent(key+'-added',[value]);			
@@ -109,9 +114,9 @@ var HistoryManager = new Class({
 	},
 	
 	set : function(key,value){
-		var newState = new Hash(this.state);
+		var newState = Object.clone(this.state);
 		
-		newState.set(key,value);
+		newState[key] = value;
 		
 		this.updateHash(this.options.delimiter + this.serializeHash(newState));
 		
@@ -119,12 +124,14 @@ var HistoryManager = new Class({
 	},
 	
 	remove : function(key){
-		var newState = new Hash(this.state);
+		var newState = Object.clone(this.state);
 		
-		newState.erase(key);
+		delete newState[key];
 		
 		this.updateHash(this.options.delimiter + this.serializeHash(newState));
 		
 		return this;
 	}
 });
+
+})(document.id);

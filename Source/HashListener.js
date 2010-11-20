@@ -10,17 +10,17 @@ authors:
 - Digitarald
 
 requires:
-- core/1.2.4: [Class,Class.Extras,Element]
+- core/1.3: [Object,Class,Class.Extras,Element,Element.Event,Element.Style]
 
 provides: [HashListener]
 
 ...
 */
-$extend(Element.NativeEvents, {
-	hashchange: 1
-});
+(function($){
 
-var HashListener = new Class({
+Element.NativeEvents['hashchange'] =  2;
+
+HashListener = new Class({
 	Implements : [Options,Events],
 	options : {
 		blank_page : 'blank.html',
@@ -30,7 +30,7 @@ var HashListener = new Class({
 	currentHash : '',
 	firstLoad : true,
 	handle : false,
-	useIframe : (Browser.Engine.trident && (typeof(document.documentMode)=='undefined' || document.documentMode < 8)),
+	useIframe : (Browser.ie && (typeof(document.documentMode)=='undefined' || document.documentMode < 8)),
 	ignoreLocationChange : false,
 	initialize : function(options){
 		var $this=this;
@@ -38,7 +38,7 @@ var HashListener = new Class({
 		this.setOptions(options);
 		
 		// Disable Opera's fast back/forward navigation mode
-		if (Browser.Engine.presto && window.history.navigationMode) {
+		if (Browser.opera && window.history.navigationMode) {
 			window.history.navigationMode = 'compatible';
 		}
 
@@ -48,7 +48,8 @@ var HashListener = new Class({
 			('onhashchange' in window) &&
             (typeof(document.documentMode) == 'undefined' || document.documentMode > 7)
 		   ){
-				// The HTML5 way of handling DHTML history...
+				
+                // The HTML5 way of handling DHTML history...
 				window.addEvent('hashchange' , function () {
 					var hash = $this.getHash();
 					if (hash == $this.currentHash) {
@@ -100,9 +101,9 @@ var HashListener = new Class({
 			doc	= (this.iframe.contentDocument) ? this.iframe.contentDocumnet  : this.iframe.contentWindow.document;
 			ie_state = doc.body.innerHTML;
 			
-			if (ie_state!=hash){
-				this.setHash(ie_state);
-				hash = ie_state;
+			if (ie_state!=hash){                
+                this.setHash(ie_state);				
+                hash = ie_state;                
 			} 
 		}		
 		
@@ -128,10 +129,10 @@ var HashListener = new Class({
 	},
 	getHash : function(){
 		var m;
-		if (Browser.Engine.gecko){
+		if (Browser.firefox){
 			m = /#(.*)$/.exec(window.location.href);
 			return m && m[1] ? m[1] : '';
-		}else if (Browser.Engine.webkit){
+		}else if (Browser.safari || Browser.chrome){
 			return decodeURI(window.location.hash.substr(1));
 		}else{
 			return window.location.hash.substr(1);
@@ -145,12 +146,12 @@ var HashListener = new Class({
 		
 	},
 	updateHash : function (newHash){
-		if ($type(document.id(newHash))) {
+		if (document.id(newHash)) {
 			this.debug_msg(
 				"Exception: History locations can not have the same value as _any_ IDs that might be in the document,"
 				+ " due to a bug in IE; please ask the developer to choose a history location that does not match any HTML"
 				+ " IDs in this document. The following ID is already taken and cannot be a location: "
-				+ newLocation
+				+ newHash
 			);
 		}
 		
@@ -163,6 +164,8 @@ var HashListener = new Class({
 		this.handle = this.checkHash.periodical(100, this);
 	},
 	stop : function(){
-		$clear(this.handle);
+		clearInterval(this.handle);
 	}
 });
+
+})(document.id);

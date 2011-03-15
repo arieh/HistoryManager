@@ -18,6 +18,8 @@ provides: [HistoryManager]
 
 (function($,undef){
 
+var fireEvent = Events.prototype.fireEvent;
+
 HistoryManager = new Class({
 	
 	Extends : HashListener,
@@ -40,6 +42,11 @@ HistoryManager = new Class({
 		
 		this.addEvent('hashChanged',this.updateState.bind(this));
 	},
+
+    fireEvent : function(name,args,delay){
+        if (!delay) delay = 1;    
+        fireEvent.apply(this,[name,args,delay]);
+    },
 
 	serializeHash : function (d) {
 		return JSON.encode(d);

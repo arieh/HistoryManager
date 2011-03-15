@@ -32,7 +32,7 @@ HashListener = new Class({
 	handle : false,
 	useIframe : (Browser.ie && (typeof(document.documentMode)=='undefined' || document.documentMode < 8)),
 	ignoreLocationChange : false,
-	initialize : function(options){
+    initialize : function(options){
 		var $this=this;
 			
 		this.setOptions(options);
@@ -70,7 +70,7 @@ HashListener = new Class({
 		
 		if (this.options.start) this.start();
 	},
-	initializeHistoryIframe : function(){
+    initializeHistoryIframe : function(){
 		var hash = this.getHash(), doc;
 		this.iframe = new IFrame({
 			src		: this.options.blank_page,
